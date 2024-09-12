@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
     //complete your logic - Eg saving transaction to db
 
     const creditsToAdd = Number(amount) * 10
-    await prisma.user.update({
+   const updatedUser =  await prisma.user.update({
       where: {
         id: userId,
       },
@@ -53,8 +53,9 @@ export async function POST(request: NextRequest) {
       },
     });
 
+    console.log("updatedUser", updatedUser)
     //revalidate the dashboard path
-    revalidatePath('/account/dashboard')
+    // revalidatePath('/account/dashboard')
     return NextResponse.json("ok", { status: 200 });
   } catch (error: any) {
     return NextResponse.json("ok");
