@@ -42,14 +42,27 @@ export async function POST(request: NextRequest) {
     //complete your logic - Eg saving transaction to db
 
     const creditsToAdd = Number(amount) * 10
-   const updatedUser =  await prisma.user.update({
+    const user = await prisma.user.findUnique({
+      where: {
+        id: userId,
+      },
+      select: {
+        credits: true,
+      },
+    });
+    
+    if(!user){
+      return NextResponse.json("ok saf");
+    }
+
+    const updatedUser = await prisma.user.update({
       where: {
         id: userId,
       },
       data: {
-        credits: {
-          increment: creditsToAdd, // replace with the actual number
-        },
+        credits: user.credits === null 
+          ? creditsToAdd 
+          : { increment: creditsToAdd },
       },
     });
 
