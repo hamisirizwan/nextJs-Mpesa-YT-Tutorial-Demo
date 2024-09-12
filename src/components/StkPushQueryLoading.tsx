@@ -2,7 +2,7 @@ import React from "react";
 
 export default function StkPushQueryLoading({ phone }: { phone: string }) {
   return (
-    <div className="space-y-2 text-center p-10 bg-gray-100">
+    <div className="space-y-2 text-center p-10">
       {/* loading text */}
       <h1 className="animate-pulse">PROCESSING PAYMENT...</h1>
       {/* number */}
