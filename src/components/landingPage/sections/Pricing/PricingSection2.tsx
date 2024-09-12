@@ -1,6 +1,23 @@
+"use client"
+import useAppStore from '@/stores/appStore';
+import { useSession } from 'next-auth/react';
 import React from 'react'
+import { toast } from 'sonner'
 
 function PricingSection2() {
+
+  const { data:session } = useSession();
+
+const { togglePaymentDialog } = useAppStore();
+
+  const handleClick = () =>{
+   if(!session?.user){
+    toast.error("Please login to buy credits")
+   }
+
+   togglePaymentDialog()
+
+  }
   return (
 
 <div className="overflow-hidden">
@@ -30,7 +47,7 @@ function PricingSection2() {
                 <p className="text-sm text-gray-500 dark:text-neutral-500">Credits Apply Until Used.</p>
               </div>
               <div className="flex justify-end">
-                <button type="button" className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">Buy Credits</button>
+                <button onClick={handleClick} type="button" className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">Buy Credits</button>
               </div>
             </div>
           </div>

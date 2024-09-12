@@ -6,7 +6,6 @@ import { Home, LineChart, Menu, Package, Package2, ShoppingCart, Users } from 'l
 import Link from 'next/link'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card'
 import { Badge } from '../ui/badge'
-import { auth } from '@/auth'
 import useAppStore from '@/stores/appStore'
 import { useSession } from 'next-auth/react'
 
@@ -76,7 +75,7 @@ import { useSession } from 'next-auth/react'
       </nav>
       <div className="mt-auto">
         <Card>
-        <CardHeader className="p-2 pt-0 md:p-4">
+        <CardHeader className="p-4">
             <CardTitle>Recharge Credits</CardTitle>
             <CardDescription className='py-1'>
             Current Credits : {session?.user?.credits}

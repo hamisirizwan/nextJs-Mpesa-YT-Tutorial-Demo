@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
   const userId = searchParams.get("userId");
   //   const jsonString = decodeURIComponent(mybody as string);
   //   const jsonData = JSON.parse(jsonString);
-  
+
   if (!userId) {
     return NextResponse.json("ok saf");
   }
@@ -40,13 +40,15 @@ export async function POST(request: NextRequest) {
 
   try {
     //complete your logic - Eg saving transaction to db
+
+    const creditsToAdd = Number(amount) * 10
     await prisma.user.update({
       where: {
         id: userId,
       },
       data: {
         credits: {
-          increment: amount, // replace with the actual number
+          increment: creditsToAdd, // replace with the actual number
         },
       },
     });
